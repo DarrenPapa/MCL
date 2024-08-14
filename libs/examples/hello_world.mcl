@@ -1,0 +1,4 @@
+program <main>
+
+* prints hello world
+println "Hello, world!"

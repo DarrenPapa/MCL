@@ -1,0 +1,13 @@
+* Do not modify for your sake
+<doc info.mcl
+    THE COMPILER HANDLES THE INFO CONSTANTS NOW
+    USE THEM INSTEAD!
+    
+    Use `!IUseArchBTW` if your an arch user 😏
+    
+    Here:
+        $system-name
+        $system-build-name
+        $system-architecture
+        $interpreter-version
+doc>

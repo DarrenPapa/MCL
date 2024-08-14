@@ -1,0 +1,23 @@
+program <main>
+
+*** Actual subroutines
+
+* Defined at runtime
+
+subroutine test_sub
+    println "Test sub"
+    return
+ends
+
+call test_sub
+
+println "Press enter..."
+pass $input
+
+*** Labels
+
+* Defined at runtime
+
+label test
+    println "Hello, world!"
+goto test

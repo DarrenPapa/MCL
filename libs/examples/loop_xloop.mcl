@@ -1,0 +1,11 @@
+program <main>
+
+* inclusive loops (0-3)
+loop 3
+    println "Loops 4 times!"
+endl
+
+* exclusive loops (0-2)
+xloop 3
+    println "Loops 3 times!"
+endl
