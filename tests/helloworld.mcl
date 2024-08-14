@@ -1,0 +1,19 @@
+* Hello, world in MCL
+
+* specify the current program
+program <main>
+
+* Print out a line
+println "Hello, world!"
+
+* Ask the user for input
+print "Name: "
+define user_name
+set $input
+close
+
+define out
+format "Your name is \%user_name\%"
+close
+
+pritnln .out

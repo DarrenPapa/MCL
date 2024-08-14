@@ -1,5 +1,4 @@
 [Documentation for MCL (My Complicated Language)]
-%%show-long-off
 
 How to use:
     Flags:
@@ -58,7 +57,6 @@ MCL Instructions:
             Tell the compiler to dont modify the code.
         optimize (default)
             Tell the compiler to optimize the code.
-            %%dont-display
             Items to optimize:
                 Loops
                 Unused subroutines

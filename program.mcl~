@@ -1,9 +1,0 @@
-!pyimport <hash.py>
-!pyimport <test.py>
-program <main>
-
-define woah
-#call "test"
-#test "ok"
-
-println .woah

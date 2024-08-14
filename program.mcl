@@ -1,4 +1,0 @@
-define test
-set number[90]
-
-println .test

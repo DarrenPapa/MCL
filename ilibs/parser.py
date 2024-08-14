@@ -283,7 +283,7 @@ def parse(code, analyze=True, globs=None, max_scope=None, data=None):
             popvar(gd, arg)
         elif op == "format" and arg is not None:
             if name is None:
-                print("No open name!")
+                print(name, "No open name!")
                 break
             text = arg
             for n, value in ld.items():

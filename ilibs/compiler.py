@@ -109,7 +109,7 @@ def identifier(name):
     return True
 
 # Self explanatory
-def compiler(code, LIBDIR=LIBDIR):
+def compiler(code, LIBDIR=LIBDIR, strict=False):
     r = []
     func = {
         "%modules":[]
@@ -143,7 +143,7 @@ def compiler(code, LIBDIR=LIBDIR):
             line = "  "+line
             temp.append(line)
             continue
-        elif line.startswith("*") or not line:
+        elif line.startswith("*") or line.startswith("#!") or not line:
             continue
         elif line.startswith("<** "):
             name = line[4:].strip()
@@ -260,6 +260,12 @@ def compiler(code, LIBDIR=LIBDIR):
                         try:
                             arg = float(arg[7:-1])
                         except:
+                            if strict:
+                                print(f"Compile Error [line {pos}]: Invalid int literal!")
+                                raise
+                            else:
+                                if not nocw:
+                                    print(f"Compile Warning [line {pos}]: Invalid int literal!")
                             arg = 0
                 elif arg.startswith('"') and arg.endswith('"') and len(arg) > 1:
                     for name, text in string.items():
@@ -286,8 +292,6 @@ def compiler(code, LIBDIR=LIBDIR):
                     arg = f'{VERSION!r}'
                 elif arg == "$system-architecture":
                     arg = f'{SYSTEM_ARCH!r}'
-                elif arg == "$?-my-love":
-                    arg = "Mary Angel Lariel O. Avena"
                 elif arg.startswith("+") and "[" in arg and arg.endswith("]"):
                     pass
                 elif arg == "dict[]":

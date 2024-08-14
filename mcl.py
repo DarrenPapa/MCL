@@ -64,6 +64,9 @@ except ImportError:
    print("Warning: Could not use faster options!")
    from ilibs.parser import parse
    print("Info: Fall back to 'parser.py'...\nPerformance drops may be noticable!\n")
+
+STRICT = False
+
 VER_STR = f"""+-------------{'-'*(len(VER)+2)}-+
 | MCL Version [{VER}] |
 +-----{'-'*(len(VER)+2)}-07-2024-+"""
@@ -194,7 +197,7 @@ def main():
         case ["compile",scr,dest]:
             if not isfile(scr):
                 print(f"The path `{path}` is invalid!")
-            open(dest,"wb").write(pack(compiler(open(scr).read()),usebar=usebar))
+            open(dest,"wb").write(pack(compiler(open(scr).read(), strict=STRICT),usebar=usebar))
         case ["rc",path,*args]:
             g = {f"argv{pos}":value for pos, value in enumerate([path, *args])}
             if not isfile(path):
@@ -233,7 +236,7 @@ def main():
             exit(1)
 if __name__ == "__main__":
     data = set()
-    expected = ["profile","usebar","version","goof","show_memory", "show_memory_advance", "serious"]
+    expected = ["compile_strict","profile","usebar","version","goof","show_memory", "show_memory_advance", "serious"]
     for pos,item in enumerate(argv):
         if pos == 0:
             continue
@@ -260,6 +263,9 @@ if __name__ == "__main__":
     if show_memory_advance:
         print("Monitoring memory...")
         main = monitor_memory_highres(main)
+    if compile_strict:
+        print("Info: USING STRICT FLAG!\nNote: This only works using compile.")
+        STRICT = True
     if profile:
         cProfile.run('main()')
     else:
